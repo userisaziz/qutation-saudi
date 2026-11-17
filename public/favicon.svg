@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="oklch(16% 0.014 262)" />
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="oklch(99.5% 0.003 250)" stroke-width="4" />
+  <rect x="14" y="42" width="36" height="8" fill="oklch(81% 0.16 82)" />
+  <text
+    x="32"
+    y="36"
+    font-family="ui-monospace, monospace"
+    font-size="22"
+    font-weight="800"
+    letter-spacing="-1"
+    fill="oklch(99.5% 0.003 250)"
+    text-anchor="middle"
+  >VS</text>
+</svg>

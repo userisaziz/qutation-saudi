@@ -1,0 +1,313 @@
+import { CONTRACT_BY_ID, lookupRate, SERVICE_DESCRIPTION, SIZES, DN } from '@/domain/catalog';
+import { blankValves } from '@/domain/pricing';
+import type { AuditEntry, Boilerplate, Contract, Cost, Quote, Role, Valve } from '@/domain/types';
+
+export const USERS: Record<Role, { name: string; email: string; ini: string }> = {
+  Estimator: { name: 'Mohammed K.', email: 'm.khan@example.com', ini: 'MK' },
+  Admin: { name: 'Sara A.', email: 's.alotaibi@example.com', ini: 'SA' },
+};
+
+export const boilerplateFor = (c: Contract): Boilerplate => ({
+  tc: `Payment terms: As per ${c.customer} payment terms\nTransportation: By the customer's materials centre\nRates: As per ARC contract ${c.arc}, VAT inclusive`,
+  notes: `The customer will pre-test the valves; if a valve fails the test, it will be taken for overhauling.\nThe customer will provide the pre-test report indicating whether the valve has passed or failed the test.\nIf overhauling is required, ${c.customer} to provide the required spare parts.\nIf spare parts are to be supplied by us, they will be charged extra on a case-to-case basis.`,
+});
+
+const V = (tag: string, serial: string): Valve => ({ tag, serial });
+
+function line(
+  id: number,
+  cid: string,
+  cat: string,
+  model: string,
+  size: string,
+  rating: string,
+  svc: string,
+  qty: number,
+  valves: Valve[],
+  extras: Cost[],
+  open = false,
+): Quote['lines'][number] {
+  const rate = lookupRate(CONTRACT_BY_ID[cid], cat, model, size, rating, svc);
+  return {
+    id,
+    cat,
+    model,
+    size,
+    rating,
+    svc,
+    desc: SERVICE_DESCRIPTION[svc],
+    qty,
+    rate,
+    ver: rate == null ? null : 'v1',
+    extras,
+    valves: blankValves(qty).map((v, i) => valves[i] ?? v),
+    open,
+  };
+}
+
+export const INITIAL_QUOTES: Quote[] = [
+  {
+    id: 'q147',
+    cid: 'c1',
+    no: 'QT-2026-0147',
+    status: 'Draft',
+    createdAt: '22/10/26',
+    finBy: null,
+    finAt: null,
+    bpSnap: null,
+    hdr: {
+      date: '22/10/26',
+      validity: '60',
+      wo: 'WO-8842117',
+      rfq: 'RFQ-RS-26-0184',
+      evmc: '5009914',
+      attn: 'Procurement Contact',
+    },
+    lines: [
+      line(
+        1,
+        'c1',
+        'Safety Valve',
+        'Conventional PSV',
+        '1 x 2',
+        '150~600 LB',
+        'Testing and Calibration at Contract Workshop',
+        3,
+        [V('A10-PSV-08A', '7741-01'), V('A10-PSV-08B', '7741-02'), V('A10-PSV-11', '')],
+        [],
+      ),
+      line(
+        2,
+        'c1',
+        'Safety Valve',
+        'Pilot PSV',
+        '6 x 8',
+        '900~2500 LB',
+        'OH Level-2',
+        1,
+        [V('A10-PSV-21', 'PL-5530')],
+        [{ label: 'Pilot assembly seal kit', amount: '1400' }],
+      ),
+      line(
+        3,
+        'c1',
+        'Gate Valve',
+        'Wedge Gate',
+        '4 x 6',
+        '150~600 LB',
+        'OH Level-1',
+        2,
+        [V('B22-GV-104', 'GV-88412'), V('B22-GV-107', 'GV-88419')],
+        [
+          { label: 'Replacement gland packing', amount: '850' },
+          { label: 'Hydrotest', amount: '400' },
+        ],
+      ),
+    ],
+    qx: [
+      { label: 'Mobilisation to site', amount: '2500' },
+      { label: 'Transport to contract workshop', amount: '1200' },
+    ],
+  },
+  {
+    id: 'q149',
+    cid: 'c1',
+    no: 'QT-2026-0149',
+    status: 'Draft',
+    createdAt: '24/10/26',
+    finBy: null,
+    finAt: null,
+    bpSnap: null,
+    hdr: {
+      date: '24/10/26',
+      validity: '60',
+      wo: 'WO-8842390',
+      rfq: 'RFQ-RS-26-0207',
+      evmc: '5009951',
+      attn: 'Procurement Contact',
+    },
+    lines: [
+      line(
+        11,
+        'c1',
+        'Safety Valve',
+        'Pilot PSV',
+        '6 x 8',
+        '900~2500 LB',
+        'OH Level-2',
+        2,
+        [V('C05-PSV-03', 'PL-6012'), V('C05-PSV-04', 'PL-6013')],
+        [],
+      ),
+    ],
+    qx: [],
+  },
+  {
+    id: 'q139',
+    cid: 'c1',
+    no: 'QT-2026-0139',
+    status: 'Finalised',
+    createdAt: '05/10/26',
+    finBy: USERS.Estimator.name,
+    finAt: '08/10/26',
+    bpSnap: boilerplateFor(CONTRACT_BY_ID.c1),
+    hdr: {
+      date: '05/10/26',
+      validity: '60',
+      wo: 'WO-8837001',
+      rfq: 'RFQ-RS-26-0119',
+      evmc: '5009402',
+      attn: 'Procurement Contact',
+    },
+    lines: [
+      line(
+        21,
+        'c1',
+        'Ball Valve',
+        'Floating Ball',
+        '2 x 3',
+        '150~600 LB',
+        'Repair and Lapping',
+        2,
+        [V('D14-BV-31', 'BV-30117'), V('D14-BV-32', 'BV-30121')],
+        [],
+      ),
+    ],
+    qx: [{ label: 'Transport to contract workshop', amount: '900' }],
+  },
+  {
+    id: 'q144',
+    cid: 'c2',
+    no: 'QT-2026-0144',
+    status: 'Draft',
+    createdAt: '14/10/26',
+    finBy: null,
+    finAt: null,
+    bpSnap: null,
+    hdr: {
+      date: '14/10/26',
+      validity: '30',
+      wo: 'WO-4100772',
+      rfq: 'RFQ-SM-26-0431',
+      evmc: '5009860',
+      attn: 'Faisal H.',
+    },
+    lines: [
+      line(
+        31,
+        'c2',
+        'Safety Valve',
+        'PRV',
+        '2 x 3',
+        '150~600 LB',
+        'OH Level-2',
+        2,
+        [V('E01-PRV-02', 'PR-2290'), V('E01-PRV-05', 'PR-2297')],
+        [],
+      ),
+      line(
+        32,
+        'c2',
+        'Check Valve',
+        'Swing Check',
+        '4 x 6',
+        '150~600 LB',
+        'OH Level-1',
+        1,
+        [V('E01-CV-11', 'SC-1180')],
+        [],
+      ),
+    ],
+    qx: [],
+  },
+  {
+    id: 'q131',
+    cid: 'c3',
+    no: 'QT-2026-0131',
+    status: 'Closed',
+    createdAt: '12/07/26',
+    finBy: USERS.Estimator.name,
+    finAt: '14/07/26',
+    bpSnap: boilerplateFor(CONTRACT_BY_ID.c3),
+    hdr: {
+      date: '12/07/26',
+      validity: '30',
+      wo: 'WO-6033104',
+      rfq: 'RFQ-YB-26-0088',
+      evmc: '5008211',
+      attn: 'Hassan Q.',
+    },
+    lines: [
+      line(
+        41,
+        'c3',
+        'Globe Valve',
+        'Standard Globe',
+        '3 x 4',
+        '900~2500 LB',
+        'OH Level-1',
+        1,
+        [V('F09-GL-07', 'GL-55102')],
+        [],
+      ),
+    ],
+    qx: [],
+  },
+];
+
+INITIAL_QUOTES.forEach((q) => {
+  if (q.status !== 'Draft') q.bpSnap = boilerplateFor(CONTRACT_BY_ID[q.cid]);
+});
+
+export const INITIAL_AUDIT: AuditEntry[] = [
+  {
+    at: '24/10/26 16:40',
+    who: USERS.Estimator.name,
+    role: 'Estimator',
+    area: 'Quotation',
+    action: 'Saved with 1 not-contracted line (Pilot PSV 6 x 8, 900~2500 LB, OH Level-2)',
+    obj: 'QT-2026-0149',
+  },
+  {
+    at: '22/10/26 11:05',
+    who: USERS.Estimator.name,
+    role: 'Estimator',
+    area: 'Quotation',
+    action: 'Created for WO-8842117',
+    obj: 'QT-2026-0147',
+  },
+  {
+    at: '14/10/26 09:30',
+    who: USERS.Estimator.name,
+    role: 'Estimator',
+    area: 'Quotation',
+    action: 'Saved with 1 not-contracted line (PRV 2 x 3, 150~600 LB, OH Level-2)',
+    obj: 'QT-2026-0144',
+  },
+  {
+    at: '08/10/26 14:22',
+    who: USERS.Estimator.name,
+    role: 'Estimator',
+    area: 'Quotation',
+    action: 'Finalised — proposal snapshot frozen',
+    obj: 'QT-2026-0139',
+  },
+  {
+    at: '01/10/26 10:12',
+    who: USERS.Admin.name,
+    role: 'Admin',
+    area: 'Boilerplate',
+    action: 'Updated Terms & Conditions — reason: delivery clause revised',
+    obj: 'CT-2024-018',
+  },
+  {
+    at: '12/04/26 08:50',
+    who: USERS.Admin.name,
+    role: 'Admin',
+    area: 'Rate sheet',
+    action: 'Imported A-77420 price sheet — 512 rows — reason: annual reissue',
+    obj: 'CT-2024-018',
+  },
+];
+
+export const SIZE_OPTIONS = SIZES.map((s, i) => ({ value: s, label: `${s}  ·  ${DN[i]}` }));

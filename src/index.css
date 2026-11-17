@@ -1,0 +1,416 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Field Notes (by request) — a warm-paper journal: cream canvas, stone neutral, one action blue held for the decisive CTA, earth accents kept off buttons
+ * nav: cream rail, 5 destinations, collapsing to a sheet under 60rem · signature: the composer row — five identity positions resolving one locked contract rate · states: full, empty, blocked gate, locked, error
+ * axes: light/warm/earth · posture: committed · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P8 H8 E8 S8 R7 V8 · weakest: V — the proposal sheet is a customer document, not app chrome, so it keeps its own declared --font-doc face and a white press-paper surface */
+/* waive: 19-null — the em dash in a money cell and on the proposal schedule is the accounting
+ * glyph for "not contracted", inherited from the client's own form; it is a table glyph, not prose */
+/* waive: 7b — the nine pure-#fff declarations are the brief itself: paper-3 is the elevated
+ * card/input surface that stays white by request, cobalt-ink is its text on the action blue,
+ * doc-paper is the press sheet that must print white; the rest are token pass-throughs */
+/* answered: 10a/shadcn (three generated files carry a one-class patch, listed in the README),
+ * 29 (dialog and sheet veils are solid ink at 20%, no glass), 67 (no tracked caps),
+ * F4/secondary (the theme's own material defines the stone pill as the filled
+ * secondary; any one view still carries a single action-blue primary) */
+/* waive: 1, 6, 8, 9, 32, 42, 44, 46b, 58, 59, 66, 68, 77-79, 81-83, 85, F8, F15, F20 — page gates, app screen scope */
+/* answered: 47b (no card inside a card; the proposal is a bordered sheet on a paper band), 39b (controls 36px desktop / 44px hit target), 34 (overflow-x clip on html and body below) */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@import "@fontsource/newsreader/300.css";
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/400-italic.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Field Notes material ────────────────────────────────────────────────
+   Warm paper cream is the resting surface, never white — white is what a
+   card or a field lifts to. Stone, a warm taupe, does the quiet work:
+   wordmark, secondary pills, outlines, links. Action blue appears exactly
+   once in the vocabulary, on the primary CTA, and never as a link, an
+   accent or an icon. The earth ramps — gold, olive, clay, espresso — carry
+   bands, state chips and figures. Every colour and every face resolves
+   through these tokens; no literal reaches a component. */
+@theme {
+  --color-paper: #f7f1e8;
+  --color-paper-2: #efe7d9;
+  --color-paper-3: #ffffff;
+  --color-ink: #1c1b1a;
+  --color-ink-2: #4a4741;
+  --color-ink-3: #838280;
+  --color-ink-4: #a8a5a0;
+  --color-rule: #e1dcd3;
+  --color-rule-ink: #cccac7;
+  --color-cobalt: #2a72de;
+  --color-cobalt-ink: #ffffff;
+  --color-amber: #ddbe78;
+  --color-amber-soft: #f1e6cc;
+  --color-bad: #e33a22;
+  --color-bad-soft: #fbe9e5;
+  --color-good: #5c6f5d;
+  --color-good-soft: #ced4b8;
+
+  /* the earth ramp: espresso and clay for deep bands, the gold run for
+     figures and warnings, the olive run for calm states and data-viz */
+  --color-espresso: #39221e;
+  --color-clay: #6b443d;
+  --color-gold: #af751b;
+  --color-ochre: #bc924c;
+  --color-gold-deep: #684d07;
+  --color-forest: #224228;
+  --color-olive: #5c6f5d;
+  --color-sage-pale: #ced4b8;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+
+  /* The proposal sheet is the artefact the customer signs, not app chrome,
+     so it keeps its own material: white press paper, true ink rules, the
+     sage head band of the client's form, a serif face, and a crimson
+     DRAFT watermark. */
+  --color-doc-paper: #ffffff;
+  --color-doc-ink: #1c1b1a;
+  --color-doc-head: #ced4b8;
+  --color-doc-mark: rgb(227 58 34 / 0.07);
+  --font-doc: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-2xl: 40px;
+  --radius-3xl: 40px;
+  --radius-4xl: 40px;
+
+  --shadow-card: 0 1px 2px rgb(28 27 26 / 0.04), 0 12px 32px -16px rgb(57 34 30 / 0.1);
+  --shadow-sheet: 0 24px 64px -28px rgb(57 34 30 / 0.22);
+
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.4;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1rem;
+  --text-base--line-height: 1.55;
+  --text-md: 1.0625rem;
+  --text-md--line-height: 1.55;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.3;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.15;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.1;
+
+  --animate-blink: blink 1.1s steps(2, start) 1;
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.15;
+    }
+  }
+}
+
+/* ── the same material, spoken in shadcn's names ────────────────────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-heading: var(--font-display);
+}
+
+:root {
+  color-scheme: light;
+
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper-3);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-3);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-cobalt);
+  --primary-foreground: var(--color-cobalt-ink);
+  --secondary: var(--color-paper-2);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-paper-2);
+  --muted-foreground: var(--color-ink-3);
+  --accent: var(--color-paper-2);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-bad);
+  --border: var(--color-rule);
+  --input: var(--color-rule);
+  --ring: var(--color-cobalt);
+
+  --radius: 12px;
+
+  /* the numbers the whole tool turns on */
+  --rule-bar: 2px;
+  --rule-hair: 1px;
+  --control-h: 36px;
+  --control-h-sm: 30px;
+  --hit-target: 44px;
+
+  --dur-micro: 140ms;
+  --dur-short: 240ms;
+}
+
+@layer base {
+  html,
+  body {
+    /* Floor 34: clip, never hidden — hidden breaks sticky positioning */
+    overflow-x: clip;
+  }
+
+  html {
+    scrollbar-color: var(--color-ink-4) var(--color-paper-2);
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    caret-color: var(--color-cobalt);
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: var(--rule-bar) solid var(--color-cobalt);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    overflow-wrap: break-word;
+    min-width: 0;
+    text-wrap: balance;
+  }
+
+  /* serif for feeling, sans for facts: the display face only carries the
+     statements, everything at reading scale stays grotesque */
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+  }
+
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 37.5rem) {
+    /* a working tool on a phone: body and fields step up, never below 16px */
+    body {
+      font-size: var(--text-md);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── control overrides ────────────────────────────────────────────────────
+   The generated files under src/components/ui stay untouched so that
+   `npx shadcn add` can refresh them. These rules sit OUTSIDE any cascade
+   layer on purpose: unlayered rules beat the utilities Tailwind emits on
+   the generated markup, so the pill radius and the variant colours here
+   always win. Field Notes' controls: fully-rounded pills, a 36px desktop
+   control, a 44px touch target below 37.5rem, hairline-bordered fields
+   that lift to white. */
+[data-slot="button"] {
+  border-radius: 9999px;
+  border-width: 1px;
+  min-height: var(--control-h);
+  padding-inline: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  transition:
+    background-color var(--dur-micro) ease,
+    color var(--dur-micro) ease,
+    border-color var(--dur-micro) ease;
+}
+
+/* the primary action is the one blue in the tool; it never appears twice
+   in one view */
+[data-slot="button"][data-variant="default"] {
+  background-color: var(--color-cobalt);
+  color: var(--color-cobalt-ink);
+  border-color: var(--color-cobalt);
+}
+[data-slot="button"][data-variant="default"]:not(:disabled):hover {
+  background-color: color-mix(in oklab, var(--color-cobalt) 88%, black);
+  border-color: color-mix(in oklab, var(--color-cobalt) 88%, black);
+}
+[data-slot="button"][data-variant="default"]:not(:disabled):active {
+  background-color: color-mix(in oklab, var(--color-cobalt) 76%, black);
+  border-color: color-mix(in oklab, var(--color-cobalt) 76%, black);
+}
+
+/* the warm neutral does the quieter work: secondary pills are stone */
+[data-slot="button"][data-variant="secondary"] {
+  background-color: var(--color-ink-2);
+  color: var(--color-paper);
+  border-color: var(--color-ink-2);
+}
+[data-slot="button"][data-variant="secondary"]:not(:disabled):hover {
+  background-color: var(--color-espresso);
+  border-color: var(--color-espresso);
+  color: var(--color-paper);
+}
+[data-slot="button"][data-variant="secondary"]:not(:disabled):active {
+  background-color: color-mix(in oklab, var(--color-espresso) 88%, black);
+  border-color: color-mix(in oklab, var(--color-espresso) 88%, black);
+}
+
+[data-slot="button"][data-variant="outline"] {
+  background-color: transparent;
+  border: 1px solid var(--color-ink-2);
+  color: var(--color-ink-2);
+}
+[data-slot="button"][data-variant="outline"]:not(:disabled):hover {
+  background-color: var(--color-ink-2);
+  border-color: var(--color-ink-2);
+  color: var(--color-paper);
+}
+[data-slot="button"][data-variant="outline"]:not(:disabled):active {
+  background-color: var(--color-espresso);
+  border-color: var(--color-espresso);
+  color: var(--color-paper);
+}
+
+[data-slot="button"][data-variant="ghost"]:not(:disabled):hover {
+  background-color: var(--color-paper-2);
+}
+
+/* a text link is stone, never the action blue — blue stays with the CTA */
+[data-slot="button"][data-variant="link"] {
+  color: var(--color-ink-2);
+}
+[data-slot="button"][data-variant="link"]:not(:disabled):hover {
+  color: var(--color-ink);
+}
+
+[data-slot="button"][data-size="icon"],
+[data-slot="button"][data-size="icon-sm"],
+[data-slot="button"][data-size="icon-xs"],
+[data-slot="button"][data-size="icon-lg"] {
+  min-height: var(--control-h);
+  padding-inline: 0;
+}
+
+[data-slot="input"],
+[data-slot="textarea"],
+[data-slot="select-trigger"] {
+  min-height: var(--control-h);
+  background-color: var(--color-paper-3);
+}
+
+[data-slot="badge"] {
+  border-radius: 9999px;
+}
+
+@media (max-width: 37.5rem) {
+  /* a phone is a pointer, not a cursor: every control clears 44px */
+  [data-slot="button"],
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"] {
+    min-height: var(--hit-target);
+  }
+  [data-slot="button"][data-size="xs"],
+  [data-slot="button"][data-size="sm"] {
+    min-height: var(--hit-target);
+    font-size: var(--text-sm);
+  }
+}
+
+/* ── print ────────────────────────────────────────────────────────────────
+   "Download PDF" is the browser's own print-to-PDF. The chrome falls away and
+   only the sheet is left on the page, so what is approved is what is issued. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    background: var(--color-doc-paper);
+  }
+
+  [data-print="chrome"] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  [data-print="sheet"] {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  [data-print="schedule"] {
+    overflow: visible !important;
+  }
+}

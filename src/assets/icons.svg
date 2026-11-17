@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true">
+  <!--
+    Contract Quotation Portal — UI icon sprite.
+    24x24 grid, 1.5 stroke, round caps/joins, currentColor.
+    Usage:  <svg class="ic"><use href="portal-icons.svg#ic-valve-psv"/></svg>
+    Colour comes from CSS `color`, so state colours (amber / red / blue) work unchanged.
+  -->
+
+  <defs>
+    <style>
+      .ic{width:20px;height:20px;display:inline-block;vertical-align:-4px;fill:none;
+          stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <!-- ── valve categories ─────────────────────────────────────────── -->
+
+  <symbol id="ic-valve-gate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 8 12 12 5 16Z"/>
+    <path d="M19 8 12 12 19 16Z"/>
+    <path d="M12 12V4.5"/>
+    <path d="M8.5 4.5h7"/>
+  </symbol>
+
+  <symbol id="ic-valve-ball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 8.6 10.6 12 4 15.4Z"/>
+    <path d="M20 8.6 13.4 12 20 15.4Z"/>
+    <circle cx="12" cy="12" r="3.1"/>
+    <path d="M12 8.9V4.5"/>
+    <path d="M8.5 4.5h7"/>
+  </symbol>
+
+  <symbol id="ic-valve-psv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 11.6 12 15 5 18.4Z"/>
+    <path d="M19 11.6 12 15 19 18.4Z"/>
+    <path d="M12 12.3V9.6"/>
+    <rect x="9.4" y="5.4" width="5.2" height="4.2" rx="1"/>
+    <path d="M14.6 6.6 19 5.1"/>
+  </symbol>
+
+  <symbol id="ic-valve-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 8.6 10.6 12 4 15.4Z"/>
+    <path d="M20 8.6 13.4 12 20 15.4Z"/>
+    <circle cx="12" cy="12" r="2.2"/>
+    <circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"/>
+    <path d="M12 9.8V4.5"/>
+    <path d="M9 4.5h6"/>
+    <path d="M12 4.5V2.6"/>
+  </symbol>
+
+  <symbol id="ic-valve-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 8.6 10.6 12 4 15.4Z"/>
+    <path d="M20 8.6 13.4 12 20 15.4Z"/>
+    <path d="M10.9 10.4 13.1 13.6"/>
+    <path d="M14.4 9.6 16 12l-1.6 2.4"/>
+  </symbol>
+
+  <symbol id="ic-valve" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 8 12 12 5 16Z"/>
+    <path d="M19 8 12 12 19 16Z"/>
+    <path d="M12 12V5.2"/>
+    <circle cx="12" cy="4" r="1.4"/>
+  </symbol>
+
+  <!-- ── rate states ──────────────────────────────────────────────── -->
+
+  <symbol id="ic-rate-locked" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="10.8" width="14" height="9.4" rx="2"/>
+    <path d="M8.4 10.8V7.9a3.6 3.6 0 0 1 7.2 0v2.9"/>
+    <path d="M12 14.3v2.6"/>
+  </symbol>
+
+  <symbol id="ic-not-contracted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4.2 21 19.4H3Z"/>
+    <path d="M12 10.2v4"/>
+    <path d="M12 16.6h.01"/>
+  </symbol>
+
+  <symbol id="ic-off-contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="3" stroke-dasharray="2.6 2.4"/>
+    <path d="M9.7 9.5a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.1.9-1.1 1.8"/>
+    <path d="M12 16.6h.01"/>
+  </symbol>
+
+  <symbol id="ic-finalised" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.2"/>
+    <path d="M8.3 12.2 10.9 14.8 15.8 9.4"/>
+  </symbol>
+
+  <symbol id="ic-superseded" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.2"/>
+    <path d="M8.8 8.8 15.2 15.2"/>
+    <path d="M15.2 8.8 8.8 15.2"/>
+  </symbol>
+
+  <!-- ── screens ──────────────────────────────────────────────────── -->
+
+  <symbol id="ic-contract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.6 3.5h7.2l4.6 4.6v12.4H6.6Z"/>
+    <path d="M13.8 3.5v4.6h4.6"/>
+    <path d="M9.6 12.2h5.8M9.6 15.4h5.8M9.6 18.2h3"/>
+  </symbol>
+
+  <symbol id="ic-proposal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5.4 3.5h6.8l4.2 4.2v6.1"/>
+    <path d="M12.2 3.5v4.2h4.2"/>
+    <path d="M8.2 11.6h3M8.2 14.6h2"/>
+    <circle cx="16.6" cy="16.6" r="4.4"/>
+    <path d="M14.6 16.7 16.1 18.2 18.7 15.2"/>
+  </symbol>
+
+  <symbol id="ic-rate-queue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.6 13.4 6 5.2h12l2.4 8.2"/>
+    <path d="M3.6 13.4v5.4a1.8 1.8 0 0 0 1.8 1.8h13.2a1.8 1.8 0 0 0 1.8-1.8v-5.4Z"/>
+    <path d="M3.6 13.4h5l1.4-2.1h4l1.4 2.1h5"/>
+  </symbol>
+
+  <symbol id="ic-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.6" y="4.2" width="16.8" height="15.6" rx="2.2"/>
+    <path d="M3.6 9.2h16.8M9.2 4.2v15.6"/>
+    <path d="M15.1 12v4.2M13 14.3l2.1 2.2 2.1-2.2"/>
+  </symbol>
+
+  <symbol id="ic-audit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.4 12a8.4 8.4 0 1 1-2.9-6.3"/>
+    <path d="M20.4 4.2v4.4h-4.4"/>
+    <path d="M12 8v4.3l2.9 1.8"/>
+  </symbol>
+
+  <symbol id="ic-service-bundle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.4 20.4 7.6 12 11.8 3.6 7.6Z"/>
+    <path d="M3.6 12.2 12 16.4l8.4-4.2"/>
+    <path d="M3.6 16.4 12 20.6l8.4-4.2"/>
+  </symbol>
+
+  <!-- ── row affordances ──────────────────────────────────────────── -->
+
+  <symbol id="ic-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.4 9.6 12 15.2l5.6-5.6"/>
+  </symbol>
+
+  <symbol id="ic-collapse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.4 14.4 12 8.8l5.6 5.6"/>
+  </symbol>
+
+  <symbol id="ic-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4.4h7.4l8.6 8.6a1.5 1.5 0 0 1 0 2.1l-5.3 5.3a1.5 1.5 0 0 1-2.1 0L4 11.8Z"/>
+    <circle cx="8.1" cy="8.1" r="1.3"/>
+  </symbol>
+
+  <symbol id="ic-serial" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.8 5.6v12.8M6.9 5.6v12.8M10 5.6v8.4M12.7 5.6v12.8M15.8 5.6v8.4M18.5 5.6v12.8M21 5.6v12.8"/>
+  </symbol>
+
+  <symbol id="ic-duplicate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8.6" y="8.6" width="11.8" height="11.8" rx="2.2"/>
+    <path d="M15.4 8.6V5.8a1.6 1.6 0 0 0-1.6-1.6H5.8a1.6 1.6 0 0 0-1.6 1.6v8a1.6 1.6 0 0 0 1.6 1.6h2.8"/>
+  </symbol>
+
+  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5.2v13.6M5.2 12h13.6"/>
+  </symbol>
+
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10.9" cy="10.9" r="6.6"/>
+    <path d="M15.8 15.8 20.4 20.4"/>
+  </symbol>
+
+  <symbol id="ic-cost-addition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.2"/>
+    <path d="M14.6 9.2a3.1 3.1 0 0 0-5.2 2.2c0 2.9 5.2 1.5 5.2 4.2a3.1 3.1 0 0 1-5.2 1.6"/>
+    <path d="M12 6.6v1.8M12 15.4v1.9"/>
+  </symbol>
+
+  <!-- ── roles ────────────────────────────────────────────────────── -->
+
+  <symbol id="ic-estimator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="3.6"/>
+    <path d="M4.8 20.4a7.2 7.2 0 0 1 14.4 0"/>
+  </symbol>
+
+  <symbol id="ic-admin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.2 19.4 6v6.1c0 4.4-3 7.4-7.4 9-4.4-1.6-7.4-4.6-7.4-9V6Z"/>
+    <path d="M9.2 12.1 11.2 14l3.7-3.9"/>
+  </symbol>
+
+  <!-- ── status / meta ────────────────────────────────────────────── -->
+
+  <symbol id="ic-age" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12.4" r="8"/>
+    <path d="M12 8.2v4.4l3 1.9"/>
+  </symbol>
+
+  <symbol id="ic-source-page" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.4" y="5.4" width="17.2" height="13.2" rx="2"/>
+    <path d="M7.2 9.6h6M7.2 12.4h9.6M7.2 15.2h4.4"/>
+    <circle cx="17" cy="9.6" r="1.4"/>
+  </symbol>
+
+  <symbol id="ic-validity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.6" y="5.2" width="16.8" height="15.2" rx="2.2"/>
+    <path d="M3.6 9.8h16.8M8.2 3.4v3.6M15.8 3.4v3.6"/>
+    <path d="M9.4 15.4l1.8 1.8 3.6-3.8"/>
+  </symbol>
+
+  <symbol id="ic-excluded" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.6 8.4h14.8v11.2H4.6Z"/>
+    <path d="M8.6 8.4V5.8h6.8v2.6"/>
+    <path d="M8.2 12.4l7.6 5M15.8 12.4l-7.6 5"/>
+  </symbol>
+
+  <symbol id="ic-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.4"/>
+    <path d="M12 7.6v5"/>
+    <path d="M12 15.9h.01"/>
+  </symbol>
+
+  <!-- ── brand placeholder ────────────────────────────────────────── -->
+  <!-- NOT the company logo. Real brand assets are still outstanding; swap this out. -->
+
+  <symbol id="ic-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="28" height="28" rx="8"/>
+    <path d="M8 11.5 16 16 8 20.5Z"/>
+    <path d="M24 11.5 16 16 24 20.5Z"/>
+    <path d="M16 16V8.4"/>
+    <path d="M12.6 8.4h6.8"/>
+  </symbol>
+
+  <!-- ── empty state ──────────────────────────────────────────────── -->
+
+  <symbol id="il-empty-rates" viewBox="0 0 132 92" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="14" y="10" width="56" height="72" rx="5"/>
+    <path d="M24 26h36M24 38h36M24 50h22"/>
+    <path d="M24 64h14l4.5-6 4.5 6h11" stroke-dasharray="3 3"/>
+    <circle cx="92" cy="46" r="21"/>
+    <path d="M107 61l13 13"/>
+    <path d="M83 46 92 50.5 83 55Z"/>
+    <path d="M101 46 92 50.5 101 55Z"/>
+    <path d="M92 50.5V41"/>
+    <path d="M88 41h8"/>
+  </symbol>
+</svg>

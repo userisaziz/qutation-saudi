@@ -8,23 +8,73 @@
 
 **Live demo → [https://qutation-saudi.vercel.app](https://qutation-saudi.vercel.app)**
 
-An internal pricing tool for an industrial valve-services workshop in Jubail, Saudi Arabia. Estimators price maintenance work orders — testing, overhauling, repairs, spares — against **master contract rate schedules**, then issue the customer-facing **techno-commercial proposal** as a print-ready document.
+## What is this project?
 
-The tool enforces one discipline: **the estimator never types a price.** Every rate is read, locked or flagged.
+A valve-services workshop in Jubail, Saudi Arabia maintains safety valves, control valves and gate valves for industrial customers. Each customer signs a **master contract** — a multi-year agreement that fixes the price of every service (testing, overhauling, repairs, spares) for every valve type and size. While a contract is valid, its prices are **locked**: the workshop cannot charge more or less, no matter who writes the quotation.
 
-| Master contracts | Quotation composer | Proposal preview |
-| --- | --- | --- |
-| [![Master contracts screen](docs/screenshots/contracts.png)](https://qutation-saudi.vercel.app) | [![Quotation composer screen](docs/screenshots/composer.png)](https://qutation-saudi.vercel.app) | [![Proposal preview screen](docs/screenshots/preview.png)](https://qutation-saudi.vercel.app) |
+This portal is the internal tool that makes that discipline effortless:
 
-## The workflow it models
+- An **estimator** picks the valve, its size, its rating and the service — and the tool reads the locked price straight from the contract. The estimator never types a number.
+- If a combination isn't in the contract, the line is flagged **"Not contracted"** and an **admin** prices it once in a rate queue; every waiting quotation is backfilled automatically.
+- When the quotation is complete, the tool issues the customer's **techno-commercial proposal** — a print-ready document produced by the browser's own print dialog.
 
-1. **Rates are contract-locked.** Each line price is a flat, VAT-inclusive SAR rate read from the master contract's schedule, keyed by a five-position identity — *Category · Model · Size · Rating · Service*. The composer resolves the rate as soon as all five positions are picked.
-2. **"Not contracted" is flagged, never improvised.** A combination the schedule doesn't cover is marked on the line and raised in the admin **Rate queue** — one item per missing combination per contract. Publishing a rate there backfills every draft quotation waiting on it.
+The result: prices can't drift, gaps can't hide, and the customer document always matches the contract.
+
+## Take the tour
+
+Every screenshot below is from the live demo. Follow it top to bottom and you've seen the whole product.
+
+### 1 · Master contracts — where pricing authority lives
+
+![Master contracts screen](docs/screenshots/contracts.png)
+
+The home screen. Each row is a customer's master contract: how many rate lines it defines, how many quotations are being drafted against it, and — on the coloured bar — how much of its multi-year term has been used. Status pills say who you may quote against: **Active** contracts are open, **Expiring** needs attention, **Expired** (Mawred, at 100%) can no longer be quoted.
+
+### 2 · Contract detail — the locked price list
+
+![Contract detail screen](docs/screenshots/contract-detail.png)
+
+Inside one contract. The plates across the top summarise the agreement — five-year term, SAR 18.5M total contract value, 802 rate lines, five service bundles. The **Rate schedule** tab holds the price book itself: every row is one combination of *Category · Model · Size · Rating · Service* with its flat, VAT-inclusive rate. This is the single source of truth the composer reads from. Filters on top narrow the 802 lines down to what you need.
+
+### 3 · Quotations — the estimator's worklist
+
+![Quotations screen](docs/screenshots/quotations.png)
+
+Every quotation for every customer, one row per customer work order. Status pills separate **Draft** from **Finalised** (locked for good) and **Closed**. The amber chips are the interesting part — *"1 not contracted"* means one line in that quotation is waiting on a missing rate. Drafts with open gaps can't be finalised until they're resolved.
+
+### 4 · The quotation composer — the heart of the tool
+
+![Quotation composer screen](docs/screenshots/composer.png)
+
+This is where a quotation is built. On each line the estimator picks five positions — category, model, size, rating, service — and the tool **resolves the contract rate the moment the fifth is chosen** (the dark locked box shows the price it found). A line whose combination isn't contracted is flagged in amber instead of being priced by hand. Below: additional costs, the running summary (the big serif total on the dark band), and the **finalise gate** — the button stays disabled while any gap or missing valve tag remains.
+
+### 5 · Proposal preview — what the customer receives
+
+![Proposal preview screen](docs/screenshots/preview.png)
+
+A faithful replica of the customer's techno-commercial proposal: the reference table, the scope, the price schedule with amounts per work order. Note the red **Not contracted** and **Excluded** marks — the customer document is honest about gaps too. The blue **Download PDF** button opens the browser's print dialog, so what you proof on this page is exactly what prints.
+
+### 6 · Rate queue — the admin's backfill desk
+
+![Rate queue screen](docs/screenshots/rate-queue.png)
+
+Admin-only (switch roles from the account menu). When estimators hit combinations their contracts don't cover, the queue collects them — **one row per missing combination per contract**, no matter how many quotations are waiting. Each row shows exactly which five positions are missing and which quotations are blocked. An admin opens the quotation, enters the rate once, publishes — and every blank line on that contract's drafts fills in.
+
+### 7 · Mobile — the same tool on a phone
+
+![Mobile view](docs/screenshots/mobile-390.png)
+
+The portal is fully responsive. At phone width the side rail collapses into a navigation sheet, the contracts table restacks into cards, touch targets grow to 44 px, and nothing scrolls sideways.
+
+## How a quotation gets priced — the five rules
+
+1. **Rates are contract-locked.** Every line price is a flat, VAT-inclusive SAR rate read from the master contract's schedule, keyed by the five-position identity (*Category · Model · Size · Rating · Service*). Estimators never type a price.
+2. **"Not contracted" is flagged, never improvised.** A combination the schedule doesn't cover is marked on the line and raised in the admin rate queue. Publishing a rate there backfills every draft quotation waiting on it.
 3. **Finalise is a gate.** A draft finalises only when every line carries a resolved rate and its valve tags are complete. Finalised quotations and their proposals become immutable.
 4. **Contract term governs pricing; offer validity is the quotation's own clock.** The multi-year ARC term decides which rates apply (and drives Active / Expiring / Expired states); each quotation's validity — 30, 60 or 90 days — is independent of it.
 5. **The proposal is a replica, not a redesign.** Preview renders the customer document on a white press sheet, and the PDF is produced through the browser's own print dialog — what you proof is what prints.
 
-## Screens
+## Screen index
 
 | Screen | Role | What happens there |
 | --- | --- | --- |
@@ -68,6 +118,8 @@ src/
   data/            seeded demo catalog, contracts and quotations
   index.css        the "Field Notes" theme: tokens, base, control overrides
 ```
+
+The split matters: `domain/` knows nothing about React, so the pricing rules can be read (and later tested or moved server-side) on their own; `state/portal.tsx` is the single reducer that every screen talks to.
 
 **Performance notes** (applied per Vercel's React best practices): the four screens a quotation always touches are static imports; the proposal preview and the admin screens are `React.lazy` chunks (Preview 9 kB, Import 10 kB, Rate queue 4 kB). Vendor 219 kB / main 237 kB (gzip ≈ 68 kB each). Derived figures are computed in the reducer, not in effects; lookup maps are built once at module level.
 
